@@ -21,7 +21,7 @@ class DiskManagerTest {
 
         DiskManager dm = new DiskManager(tempFile.toString());
 
-        int pageId = dm.allocate();
+        PageId pageId = dm.allocate();
         assertEquals(0, pageId);
 
         ByteBuffer writeBuf = ByteBuffer.allocate(PAGE_SIZE);
@@ -48,13 +48,13 @@ class DiskManagerTest {
 
         DiskManager dm = new DiskManager(tempFile.toString());
 
-        int p0 = dm.allocate();
-        int p1 = dm.allocate();
-        int p2 = dm.allocate();
+        PageId p0 = dm.allocate();
+        PageId p1 = dm.allocate();
+        PageId p2 = dm.allocate();
 
-        assertEquals(0, p0);
-        assertEquals(1, p1);
-        assertEquals(2, p2);
+        assertEquals(0, p0.getPageId());
+        assertEquals(1, p1.getPageId());
+        assertEquals(2, p2.getPageId());
 
         dm.close();
     }

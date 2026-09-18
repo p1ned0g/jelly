@@ -36,16 +36,16 @@ public class DiskManager implements AutoCloseable{
     public void close() throws IOException{
         this.fileChannel.close();
     }
-    public void read(int pageId, ByteBuffer bb) throws IOException{
-        long pos = (long) pageId * PAGE_SIZE;
+    public void read(PageId pageId, ByteBuffer bb) throws IOException{
+        long pos = pageId.toOffset(PAGE_SIZE);
         this.fileChannel.read(bb, pos);
     }
-    public void write(int pageId, ByteBuffer bb) throws IOException{
-        long pos = (long) pageId * PAGE_SIZE;
+    public void write(PageId pageId, ByteBuffer bb) throws IOException{
+        long pos = pageId.toOffset(PAGE_SIZE);
         this.fileChannel.write(bb, pos);    
     }
-    public int allocate(){
-        int pageId = this.nextPageId;
+    public PageId allocate(){
+        PageId pageId = new PageId(this.nextPageId);
         this.nextPageId += 1;
         return pageId;
     }

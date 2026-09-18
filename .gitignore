@@ -9,3 +9,13 @@ build
 
 # Ignore test db file
 *.db
+
+# Java
+bin/
+out/
+
+# VSCode
+.vscode/
+
+# OS
+.DS_Store
