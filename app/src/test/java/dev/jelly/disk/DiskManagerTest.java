@@ -22,7 +22,7 @@ class DiskManagerTest {
         DiskManager dm = new DiskManager(tempFile.toString());
 
         PageId pageId = dm.allocate();
-        assertEquals(0, pageId);
+        assertEquals(0, pageId.getPageId());
 
         ByteBuffer writeBuf = ByteBuffer.allocate(PAGE_SIZE);
         writeBuf.put("Hello, World".getBytes());
