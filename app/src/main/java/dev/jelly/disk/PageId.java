@@ -14,4 +14,9 @@ public class PageId {
     public long toOffset(int pageSize) {
         return (long) this.pageId * pageSize;
     }
+
+    // Buffer初期化時は-1でpageIDが採番される
+    public boolean isInvalid() {
+        return this.pageId == -1;
+    }
 }
