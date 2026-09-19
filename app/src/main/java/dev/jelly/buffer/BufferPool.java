@@ -32,6 +32,14 @@ public class BufferPool {
         return this.frames[idx];
     }
 
+    public int getClockHand() {
+        return this.clockHand;
+    }
+
+    public Map<PageId,Integer> getpageTable() {
+        return this.pageTable;
+    }
+
     public Buffer getIfExists(PageId pageId) {
         Integer idx = this.pageTable.get(pageId);
         if(idx == null) return null;
