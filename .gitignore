@@ -9,6 +9,7 @@ build
 
 # Ignore test db file
 *.db
+*.swp
 
 # Java
 bin/
