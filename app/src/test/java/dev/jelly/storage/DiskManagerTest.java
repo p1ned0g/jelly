@@ -1,8 +1,9 @@
-package dev.jelly.disk;
+package dev.jelly.storage;
 
 import org.junit.jupiter.api.Test;
 
-import dev.jelly.disk.DiskManager;
+import dev.jelly.common.PageConstants;
+import dev.jelly.storage.DiskManager;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -13,7 +14,7 @@ import java.nio.file.Path;
 
 class DiskManagerTest {
 
-    private static final int PAGE_SIZE = 4096;
+    private static final int PAGE_SIZE = PageConstants.PAGE_SIZE;
 
     @Test
     void testAllocateAndWriteAndRead() throws IOException {
@@ -22,7 +23,7 @@ class DiskManagerTest {
         DiskManager dm = new DiskManager(tempFile.toString());
 
         PageId pageId = dm.allocate();
-        assertEquals(0, pageId.getPageId());
+        assertEquals(new PageId(0), pageId);
 
         ByteBuffer writeBuf = ByteBuffer.allocate(PAGE_SIZE);
         writeBuf.put("Hello, World".getBytes());
@@ -52,9 +53,9 @@ class DiskManagerTest {
         PageId p1 = dm.allocate();
         PageId p2 = dm.allocate();
 
-        assertEquals(0, p0.getPageId());
-        assertEquals(1, p1.getPageId());
-        assertEquals(2, p2.getPageId());
+        assertEquals(new PageId(0), p0);
+        assertEquals(new PageId(1), p1);
+        assertEquals(new PageId(2), p2);
 
         dm.close();
     }
